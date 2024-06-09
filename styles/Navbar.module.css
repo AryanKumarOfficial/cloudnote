@@ -53,7 +53,8 @@
     align-items: center;
 }
 
-.links a {
+.links a,
+.links button {
     font-size: 1.5rem;
     text-decoration: none;
     color: #000;
@@ -62,7 +63,8 @@
 
 /* underline animation on hover */
 
-.links a::after {
+.links a::after,
+.links button::after {
     content: '';
     display: block;
     width: 0;
@@ -71,11 +73,13 @@
     transition: width 0.3s;
 }
 
-.links a:hover::after {
+.links a:hover::after,
+.links button:hover::after {
     width: 100%;
 }
 
-.links a:hover {
+.links a:hover,
+.links button:hover {
     color: #ff0000;
 }
 
