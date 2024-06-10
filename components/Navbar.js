@@ -4,6 +4,7 @@ import styles from '../styles/Navbar.module.css'
 import { TiThMenu } from 'react-icons/ti'
 import { GrClose } from 'react-icons/gr'
 import { useRouter } from 'next/router'
+import toast from 'react-hot-toast'
 const Navbar = () => {
     const router = useRouter()
     const token = useMemo(() => {
@@ -23,7 +24,10 @@ const Navbar = () => {
         // remove token from cookies
         document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         // redirect to login page
-        router.push('/login')
+        toast.success('Logged out successfully', { duration: 4000 })
+        setTimeout(() => {
+            router.push('/login')
+        }, 3000);
     }
     return (
         <header className={`shadow-md w-screen ${styles.header}`}>
