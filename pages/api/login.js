@@ -20,7 +20,11 @@ const handler = async (req, res) => {
         if (!isPassword) {
             return res.status(400).json({ message: "Invalid credentials" });
         }
+<<<<<<< HEAD
         const token = JWT.sign({ email: existingUser.email, id: existingUser._id }, process.env.JWT_SECRET);
+=======
+        const token = JWT.sign({ email: existingUser.email, id: existingUser._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+>>>>>>> 4d50c0c82088ccf5f8ab0baad1ab65ace30b9fd9
         return res.status(200).json({
             message: "User logged in successfully", token,
             user: { email: existingUser.email, id: existingUser._id }
