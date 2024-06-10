@@ -4,16 +4,16 @@ const bcrypt = require("bcryptjs");
 
 const handler = async (req, res) => {
     if (req.method !== "POST") {
-        return res.status(400).json({ message: `Method ${req.method} is not allowed` });
+        return res.status(400).json({ message: `Method ${req.method} is not allowed`, success: false });
     }
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
-        return res.status(400).json({ message: "Please provide all fields" });
+        return res.status(400).json({ message: "Please provide all fields", success: false });
     }
     try {
         const existingUser = await user.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: "User already exists" });
+            return res.status(400).json({ message: "User already exists", success: false });
         }
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {
@@ -31,9 +31,9 @@ const handler = async (req, res) => {
                 throw err;
             }
         });
-        return res.status(201).json({ message: "User registered successfully" });
+        return res.status(201).json({ message: "User registered successfully", success: true });
     } catch (error) {
-        return res.status(500).json({ message: "Internal server error" });
+        return res.status(500).json({ message: "Internal server error", success: false });
     }
 };
 

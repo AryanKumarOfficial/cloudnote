@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/Login.module.css'
 import { useRouter } from 'next/router'
+import toast from 'react-hot-toast'
 
 const Login = () => {
     const router = useRouter()
@@ -32,6 +33,9 @@ const Login = () => {
         if (token) {
             // cookies
             document.cookie = `token=${token} path=/ expires=${new Date(Date.now() + 259200000).toUTCString()}`
+            toast.success(res.message, {
+                duration: 3000,
+            })
         }
 
         console.log(res, 'response from the server');

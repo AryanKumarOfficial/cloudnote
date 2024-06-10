@@ -12,17 +12,14 @@ const Navbar = () => {
         }
     }, [router])
     useEffect(() => {
-        console.log(token, 'token');
     }, [])
     const handleSideMenu = () => {
         const overlay = document.querySelector(`.${styles.overlay}`)
-        console.log(overlay, 'overlay');
         overlay.classList.toggle(`${styles.active}`)
     }
 
     const handleLogout = (e) => {
         e.preventDefault();
-        console.log('logout');
         // remove token from cookies
         document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         // redirect to login page
@@ -37,6 +34,19 @@ const Navbar = () => {
                 <Link onClick={handleSideMenu} href='/about' className='p-4'>About</Link>
                 <Link onClick={handleSideMenu} href='/services' className='p-4'>Services</Link>
                 <Link onClick={handleSideMenu} href='/contact' className='p-4'>Contact</Link>
+                {token && <>
+                    <Link onClick={handleSideMenu} href='/profile' className='p-4'>Profile</Link>
+                    <button onClick={(e) => {
+                        handleLogout(e)
+                        handleSideMenu(e)
+                    }} className='p-4 text-4xl'>Logout</button>
+                </>
+                }{!token &&
+                    <>
+                        <Link onClick={handleSideMenu} href='/register' className='p-4'>Reister</Link>
+                        <Link onClick={handleSideMenu} href='/login' className='p-4'>Login</Link>
+                    </>
+                }
             </div>
             <nav className='container flex flex-row  justify-between items-center flex-wrap py-4'>
                 <Link href={'/'} className={`text-4xl font-bold ${styles.logo}`}>Cloud Note</Link>
@@ -45,11 +55,11 @@ const Navbar = () => {
                     <Link href='/about' className='p-4 text-xl font-semibold'>About</Link>
                     <Link href='/services' className='p-4 text-xl font-semibold'>Services</Link>
                     <Link href='/contact' className='p-4 text-xl font-semibold'>Contact</Link>
-                    {token ? <>
+                    {token && <>
                         <Link href='/profile' className='p-4 text-xl font-semibold'>Profile</Link>
                         <button onClick={handleLogout} className='p-4 text-2xl font-semibold'>Logout</button>
                     </>
-                        :
+                    }{!token &&
                         <>
                             <Link href='/register' className='p-4 text-xl font-semibold'>Reister</Link>
                             <Link href='/login' className='p-4 text-xl font-semibold'>Login</Link>
