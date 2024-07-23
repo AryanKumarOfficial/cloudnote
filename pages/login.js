@@ -11,6 +11,10 @@ const Login = () => {
         password: ''
     })
 
+    useEffect(() => {
+        document.title = 'Login | CloudNote'
+    }, [])
+
 
     const handleChange = (e) => {
         setForm({
