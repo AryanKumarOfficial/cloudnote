@@ -22,7 +22,6 @@ function parseCookie(cookieString: string): Cookie {
 export const middleware: NextMiddleware = (request: NextRequest) => {
     const cookies = parseCookie(request.headers.get('cookie') || '');
     const token = cookies.token;
-    console.log('Token:', token);
 
     // Define protected routes and auth pages
     const protectedRoutes = ['/profile', '/all', '/add'];
