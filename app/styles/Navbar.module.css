@@ -107,7 +107,7 @@
 
 @keyframes gradient {
     0% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
 
     50% {
@@ -115,7 +115,7 @@
     }
 
     100% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
 }
 
@@ -145,7 +145,7 @@
     }
 
     .active {
-        left: 0%;
+        left: 0;
         /* Set left to 0 to fully display the menu */
     }
 
