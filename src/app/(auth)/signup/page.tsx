@@ -1,23 +1,58 @@
 "use client";
-import React from "react";
+import React, {useEffect} from "react";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import axios from "axios";
+import toast from "react-hot-toast";
 
-export default function SignupPage() {
+const SignupPage: React.FC = () => {
+    const router = useRouter();
     const [user, setUser] = React.useState({
         email: "",
         password: "",
         username: "",
     });
 
-    const onSignup = async () => {
-        // Handle signup logic here
+    const [disabled, setDisabled] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+
+    useEffect(() => {
+            if (user.username.length > 0 && user.email.length > 0 && user.password.length > 0) {
+                setDisabled(false);
+            } else {
+                setDisabled(true)
+            }
+        }
+        ,
+        [user]
+    )
+
+    const onSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const response = await axios.post("/api/users/signup", user);
+            console.log("signup response", response.data);
+            if (response.status !== 201) {
+                toast.error("Signup failed");
+                console.log("signup fails", response.data.response.data.error);
+                return;
+            }
+            toast.success("Signup successful");
+            router.push("/login");
+        } catch (error: any) {
+            console.error("signup failed", error.response.data.error);
+            toast.error(error.response.data.error)
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <main className="flex bg-[#f9f9f9] flex-col justify-center items-center min-h-screen py-2 gap-10">
-            <h1 className={"text-4xl font-bold"}>Sign up</h1>
+            <h1 className={"text-4xl font-bold"}>
+                {loading ? "Processing..." : "Sign up"}
+            </h1>
             <form
                 onSubmit={onSignup}
                 style={{
@@ -68,7 +103,7 @@ export default function SignupPage() {
                     type={"submit"}
                     className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                    Sign up Here
+                    {disabled ? "Please fill all fields" : "Sign up"}
                 </button>
                 <span className="mt-4 flex justify-center">
         Visit
@@ -83,3 +118,5 @@ export default function SignupPage() {
     )
         ;
 }
+
+export default SignupPage;
