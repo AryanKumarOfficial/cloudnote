@@ -18,7 +18,6 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({error: 'Please provide all fields', success: false}, {status: 400});
         }
 
-        console.log(reqBody, "reqBody");
 
         // check if user already exists
         const userExists = await User.findOne({email});

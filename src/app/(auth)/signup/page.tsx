@@ -32,16 +32,13 @@ const SignupPage: React.FC = () => {
         try {
             setLoading(true);
             const response = await axios.post("/api/users/signup", user);
-            console.log("signup response", response.data);
             if (response.status !== 201) {
                 toast.error("Signup failed");
-                console.log("signup fails", response.data.response.data.error);
                 return;
             }
             toast.success("Signup successful");
             router.push("/login");
         } catch (error: any) {
-            console.error("signup failed", error.response.data.error);
             toast.error(error.response.data.error)
         } finally {
             setLoading(false);
