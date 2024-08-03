@@ -1,7 +1,7 @@
 import {connect} from "@/dbConfig/config";
 import {NextResponse} from "next/server";
 import User from "@/models/User";
-import {sendEmail} from "@/helpers/mailer/auth";
+import {NotificationType, sendNotification} from "@/helpers/mailer/notification";
 
 connect().then(() => console.log("connected to db")).catch((err) => console.log(err));
 
@@ -31,6 +31,9 @@ export async function POST(req: NextResponse) {
         user.verifyExpire = undefined;
 
         await user.save();
+
+        // send email to user for successful verification
+        await sendNotification({email: user.email, type: NotificationType.VERIFICATION})
 
         return NextResponse.json({
             message: "Email verified successfully",

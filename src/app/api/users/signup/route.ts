@@ -3,6 +3,8 @@ import User from "@/models/User"
 import {NextRequest, NextResponse} from "next/server";
 import bcryptjs from "bcryptjs";
 import {sendEmail} from "@/helpers/mailer/auth";
+import {sendNotification} from "@/helpers/mailer/notification";
+import {NotificationType} from "@/helpers/mailer/notification";
 
 connect().then(async () => {
     console.log('Connected to database');
@@ -38,7 +40,12 @@ export async function POST(request: NextRequest) {
         });
         await newUSer.save();
 
-        // send email
+        // send welcome email
+
+        await sendNotification({email, type: NotificationType.WELCOME});
+
+
+        // send verification email
         await sendEmail({
             email: newUSer.email.toString(),
             userId: newUSer._id.toString(),

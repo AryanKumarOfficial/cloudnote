@@ -39,7 +39,7 @@ export const sendEmail = async ({email, emailType, userId}: { email: string, ema
         You are receiving this email because you requested to ${emailType === "VERIFY" ? "verify your email address" : "reset your password"}. Please click the button below to proceed.
       </p>
       <p style="text-align: center;">
-        <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #007bff; text-decoration: none; border-radius: 5px;">${emailType === "VERIFY" ? "Verify Email" : "Reset Password"}</a>
+        <a href="${process.env.DOMAIN}/${emailType==="FORGOT"?"verifypassword":"verifyemail"}?token=${hashedToken}" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #007bff; text-decoration: none; border-radius: 5px;">${emailType === "VERIFY" ? "Verify Email" : "Reset Password"}</a>
       </p>
       <p style="font-size: 14px; color: #777;">
         If you did not request this, please ignore this email.
