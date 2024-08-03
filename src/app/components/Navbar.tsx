@@ -1,16 +1,19 @@
 "use client";
-
-// components/Navbar.tsx
 import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
 import axios from "axios";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
 
-const Navbar = () => {
+
+interface NavbarProps {
+    token?: string
+}
+
+const Navbar = ({token}: NavbarProps) => {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false)
-    const [isAuthenticated, setIsAuthenticated] = useState(false) // Simplified authentication state
+    const [Authenticated, setAuthenticated] = useState(false) // Simplified authentication state
 
     const toggleMenu = () => {
         setIsOpen(!isOpen)
@@ -21,17 +24,22 @@ const Navbar = () => {
         try {
             await axios.get("/api/users/logout");
             toast.success("Logged out successfully");
-            setIsAuthenticated(false)
+            setAuthenticated(false)
             router.push("/login");
         } catch (error: any) {
-            setIsAuthenticated(false)
+            setAuthenticated(false)
             console.log(error.message);
             toast.error(error.message || "Failed to logout");
         }
     }
 
+
     useEffect(() => {
-        console.log("Checking authentication status ", document.cookie.length);
+        if (token) {
+            setAuthenticated(true)
+        } else {
+            setAuthenticated(false)
+        }
     }, [router]);
 
     return (
@@ -106,7 +114,7 @@ const Navbar = () => {
                                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                                     Contact
                                 </Link>
-                                {isAuthenticated ? (
+                                {Authenticated ? (
                                     <>
                                         <Link href="/profile"
                                               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
@@ -155,7 +163,7 @@ const Navbar = () => {
                           className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                         Contact
                     </Link>
-                    {isAuthenticated ? (
+                    {Authenticated ? (
                         <>
                             <Link href="/profile"
                                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">

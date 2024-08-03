@@ -69,11 +69,11 @@ export default function ProfilePage() {
                 <hr className={
                     "border-t-4 border-gray-300 w-96"
                 }/>
-                {user?._id && <Link href={`/profile/${user._id}`} className={
-                    "bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-center"
-                }>
-                    Edit Profile
-                </Link>}
+                {/*{user?._id && <Link href={`/profile/${user._id}`} className={*/}
+                {/*    "bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md text-center"*/}
+                {/*}>*/}
+                {/*    Edit Profile*/}
+                {/*</Link>}*/}
                 <button
                     className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
                     onClick={handleLogout}
