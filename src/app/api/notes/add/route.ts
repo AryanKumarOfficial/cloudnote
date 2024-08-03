@@ -1,6 +1,7 @@
 import {connect} from "@/dbConfig/config";
 import {NextRequest, NextResponse} from "next/server";
 import Note from "@/models/Note";
+import {getTokenData} from "@/helpers/getTokenData";
 
 connect().then(() => console.log("DB connected"))
 
@@ -8,7 +9,8 @@ export async function POST(request: NextRequest) {
     try {
 
         const reqBody = await request.json();
-        const {title, content, userId} = reqBody;
+        const userId = getTokenData(request);
+        const {title, content} = reqBody;
         if (!title || !content || !userId) {
             return NextResponse.json({
                 success: false,

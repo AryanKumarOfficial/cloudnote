@@ -27,7 +27,7 @@ export default function RootLayout({
     const token = cookieStore.get("token")?.value;
     return (
         <html lang="en">
-        <body className={inter.className}>
+        <body className={`bg-[#f9f9f9] ${inter.className}`}>
         <Navbar token={token}/>
         <Toaster
             position="top-right"
