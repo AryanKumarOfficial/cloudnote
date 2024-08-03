@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.homeLink {
+    font-size: 1.2rem;
+    color: #0070f3;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #0070f3;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.homeLink:hover {
+    background-color: #0070f3;
+    color: #fff;
+}
