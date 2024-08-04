@@ -1,11 +1,11 @@
 import {connect} from "@/dbConfig/config";
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import User from "@/models/User";
 import {NotificationType, sendNotification} from "@/helpers/mailer/notification";
 
 connect().then(() => console.log("connected to db")).catch((err) => console.log(err));
 
-export async function POST(req: NextResponse) {
+export async function POST(req: NextRequest) {
     try {
         const reqBody = await req.json();
         const {token} = reqBody;
