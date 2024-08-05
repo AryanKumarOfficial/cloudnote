@@ -1,7 +1,6 @@
 "use client";
 import React, {useEffect} from "react";
 import axios from "axios";
-import Link from "next/link";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -31,7 +30,6 @@ export default function ProfilePage() {
         try {
             setLoading(true);
             const res = await axios.get('/api/users/me');
-            console.log(res.data.data);
             setUser(res.data.data);
 
         } catch (error: any) {

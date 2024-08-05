@@ -50,7 +50,7 @@ const ForgetPage: React.FC = () => {
                         }
                         return data;
                     }).then((data) => {
-                        toast.success(data.message);
+                        console.log(data.message);
                     }).catch((err) => {
                         setError(err.message);
                     }),
@@ -59,7 +59,7 @@ const ForgetPage: React.FC = () => {
                         success: "Email sent!",
                         error: "Failed to send email!"
                     }
-                ).then(r => {
+                ).then(() => {
                         setLoading(false)
                     }
                 )

@@ -91,7 +91,7 @@ const Navbar = ({token}: NavbarProps) => {
                     <div className="flex-1 flex items-center justify-center w-full sm:items-stretch sm:justify-start">
                         <div className="flex-shrink-0">
                             <Link href="/" className="text-white font-bold text-xl">
-                                Brand
+                                CloudNote
                             </Link>
                         </div>
                         <div className="hidden sm:block sm:ml-6">
@@ -204,6 +204,18 @@ const Navbar = ({token}: NavbarProps) => {
                                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                             >
                                 Profile
+                            </Link>
+                            <Link
+                                href="/notes"
+                                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                            >
+                                Notes
+                            </Link>
+                            <Link
+                                href="/notes/add"
+                                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                            >
+                                Add Note
                             </Link>
                             <button
                                 onClick={handleLogout}
