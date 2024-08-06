@@ -3,6 +3,7 @@ import React, {useEffect} from "react";
 import axios from "axios";
 import {useRouter} from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 export default function ProfilePage() {
     const router = useRouter();
@@ -73,11 +74,17 @@ export default function ProfilePage() {
                 {/*    Edit Profile*/}
                 {/*</Link>}*/}
                 <button
-                    className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                    className="bg-blue-500  hover:bg-blue-700 hover:shadow-modern transition-all duration-500 text-white font-bold py-2 px-4 rounded-md"
                     onClick={handleLogout}
                 >
                     Logout
                 </button>
+                <Link
+                    href={"/notes"}
+                    className="bg-blue-500  text-center hover:bg-blue-700 hover:shadow-modern transition-all duration-500 text-white font-bold py-2 px-4 rounded-md"
+                >
+                    GO TO NOTES
+                </Link>
             </section>
         </main>
     );

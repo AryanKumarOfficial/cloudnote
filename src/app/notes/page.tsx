@@ -47,7 +47,7 @@ export default function AllNotesPage() {
             {notes.length === 0 && <h1 className={"text-2xl font-semibold text-center"}>Loading...</h1>}
             {notes.length > 0 && <>
                 <h1 className={"text-4xl font-bold text-center"}>All Notes</h1>
-                <section className={"flex flex-row justify-center items-center flex-wrap"}>
+                <section className={"flex flex-row justify-center items-center flex-wrap gap-10"}>
                     {notes.map((item: INote, index) => {
                         return (
                             <div key={index}
@@ -56,9 +56,9 @@ export default function AllNotesPage() {
                                      boxShadow: "12px 12px 12px rgba(0,0,0,0.1), -10px -10px 10px white"
                                  }}
                             >
-                                <h2 className={"text-2xl font-semibold"}>{item.title}</h2>
-                                <p className={"text-lg text-justify"}>
-                                    {item.content}
+                                <h2 className={"text-2xl font-semibold text-wrap"}>{item.title.slice(0, 25)}</h2>
+                                <p className={"text-md text-justify text-wrap"}>
+                                    {item.content.slice(0, 100)}
                                 </p>
                                 <div className={"flex justify-between items-center gap-4"}>
                                     <button

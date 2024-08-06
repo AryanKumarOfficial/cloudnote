@@ -47,7 +47,7 @@ const UpdateNotePage = ({params}: { params: { id: string } }) => {
     }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        setFormData({...formData, [e.target.name]: e.target.value})
+        setFormData({...formData, [e.target.name]: e.target.value.toUpperCase()})
 
     }
 

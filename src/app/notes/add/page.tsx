@@ -14,7 +14,7 @@ const AddNotePage: React.FC = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value.toUpperCase()
         })
     }
 
@@ -52,6 +52,7 @@ const AddNotePage: React.FC = () => {
         const token = document.cookie.split(";");
         console.log(token);
     }, []);
+
 
     return <main className={"container mx-auto p-4"}>
         <h1 className={"text-3xl font-bold"}>Add Note</h1>
